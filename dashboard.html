@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sitplay — แดชบอร์ด</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+  * { font-family: 'Noto Sans Thai', 'Inter', sans-serif; }
+  body { 
+    background: url('bg-pastel.jpg') center/cover fixed;
+    color: #1a1a1a; 
+    min-height: 100vh; 
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.3);
+    pointer-events: none;
+    z-index: -1;
+  }
+  .glass-header {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  }
+  .card-glass {
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  }
+  .card-glass:hover {
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+    transform: translateY(-4px);
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  .btn-primary {
+    background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
+    color: white;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: 0 8px 24px rgba(124, 58, 237, 0.3);
+  }
+  .btn-primary:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(124, 58, 237, 0.4);
+  }
+  .gradient-text {
+    background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .skeleton {
+    background: linear-gradient(90deg, #e5e7eb 25%, #f3f4f6 50%, #e5e7eb 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+  @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="glass-header sticky top-0 z-50 px-8 py-4 flex items-center justify-between">
+  <div class="flex items-center gap-6">
+    <a href="index.html" class="flex items-center gap-3 group">
+      <div class="w-9 h-9 bg-gradient-to-br from-green-400 to-emerald-600 rounded-lg flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+        <span class="material-symbols-outlined text-white text-xl">layers</span>
+      </div>
+      <span class="text-2xl font-black gradient-text">Sitplay</span>
+    </a>
+  </div>
+  <div class="flex items-center gap-4">
+    <div class="w-10 h-10 rounded-full overflow-hidden border-2 border-green-400/30">
+      <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0o-gfQox4cBqJWTMJvkR5khtwo-NL1il6jH8Q6VdEQKzEniPT7YqeyVaW75M0tgUjTdjWk4urZ_7bguLJyqKvdASiRGb4HgSsVINQ-p7OY-y8fl99pERLhHctr_R1oeVD_w2lh9iQajKMHPUfbUJsraFbNCGlqkId2NVRdBoE6emcZrCNE0MY36PiY6iesfnS32OkakADEbz_l4Z17aUZWmaS-suIiIYZJFaX5eOrY1OfNTepXjfM8ZRlxgINU1AZl1VEPH4O6iEV" class="w-full h-full object-cover"/>
+    </div>
+  </div>
+</header>
+
+<main class="max-w-4xl mx-auto px-6 py-10">
+
+  <!-- Hero Section -->
+  <section class="mb-12">
+    <h1 class="text-5xl font-extrabold tracking-tight mb-3">
+      ยินดีต้อนรับ, <span class="gradient-text" id="user-name">ผู้ใช้</span>
+    </h1>
+    <p id="hero-subtitle" class="text-gray-600 text-lg mb-8">เข้าสู่พื้นที่ทำงานของคุณบน Sitplay</p>
+    
+    <div class="relative group">
+      <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:gradient-text transition-colors">search</span>
+      <input id="search-input" class="w-full bg-white/60 border border-white/60 rounded-2xl py-4 pl-14 pr-6 text-sm placeholder:text-gray-400 focus:ring-2 focus:ring-green-400/50 transition-all outline-none focus:bg-white" placeholder="ค้นหาโปรเจกต์ รายงาน รูปภาพ..."/>
+    </div>
+  </section>
+
+  <!-- Services Grid -->
+  <section class="mb-12">
+    <div class="flex items-center justify-between mb-6">
+      <h2 class="text-2xl font-extrabold tracking-tight">บริการ</h2>
+      <a href="#" class="text-xs font-bold uppercase tracking-widest text-green-600 hover:text-green-700 transition-colors">ดูทั้งหมด</a>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <a href="index.html" class="card-glass rounded-2xl p-6 group cursor-pointer">
+        <div class="w-12 h-12 rounded-xl bg-green-400/10 flex items-center justify-center mb-4 group-hover:bg-green-400/20 transition-colors">
+          <span class="material-symbols-outlined text-green-600 text-2xl">home</span>
+        </div>
+        <h3 class="font-bold mb-1 text-lg text-gray-900">หน้าหลัก</h3>
+        <p class="text-xs text-gray-500 font-medium">ภาพรวม Sitplay</p>
+      </a>
+
+      <div class="card-glass rounded-2xl p-6 group cursor-pointer">
+        <div class="w-12 h-12 rounded-xl bg-purple-400/10 flex items-center justify-center mb-4 group-hover:bg-purple-400/20 transition-colors">
+          <span class="material-symbols-outlined text-purple-600 text-2xl">folder_open</span>
+        </div>
+        <h3 class="font-bold mb-1 text-lg text-gray-900">โปรเจกต์</h3>
+        <p id="projects-count-label" class="text-xs text-gray-500 font-medium">กำลังโหลด...</p>
+      </div>
+
+      <div class="card-glass rounded-2xl p-6 group cursor-pointer">
+        <div class="w-12 h-12 rounded-xl bg-blue-400/10 flex items-center justify-center mb-4 group-hover:bg-blue-400/20 transition-colors">
+          <span class="material-symbols-outlined text-blue-600 text-2xl">description</span>
+        </div>
+        <h3 class="font-bold mb-1 text-lg text-gray-900">รายงาน</h3>
+        <p id="reports-count-label" class="text-xs text-gray-500 font-medium">กำลังตรวจสอบ...</p>
+      </div>
+
+      <a href="photos.html" class="card-glass rounded-2xl p-6 group cursor-pointer">
+        <div class="w-12 h-12 rounded-xl bg-pink-400/10 flex items-center justify-center mb-4 group-hover:bg-pink-400/20 transition-colors">
+          <span class="material-symbols-outlined text-pink-600 text-2xl">photo_library</span>
+        </div>
+        <h3 class="font-bold mb-1 text-lg text-gray-900">คลังรูป</h3>
+        <p id="photos-count-label" class="text-xs text-gray-500 font-medium">กำลังโหลด...</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section class="mb-12">
+    <div class="flex items-center justify-between mb-6">
+      <h2 class="text-2xl font-extrabold tracking-tight">พื้นที่ทำงานที่ใช้งาน</h2>
+      <button id="add-project-btn" class="btn-primary flex items-center gap-2 px-6 py-3 rounded-full text-sm font-bold">
+        <span class="material-symbols-outlined text-lg">add</span> โปรเจกต์ใหม่
+      </button>
+    </div>
+    <div id="projects-list" class="space-y-4">
+      <div class="skeleton h-20 rounded-2xl"></div>
+      <div class="skeleton h-20 rounded-2xl"></div>
+    </div>
+  </section>
+
+  <!-- Activity Section -->
+  <section class="mb-8">
+    <h2 class="text-2xl font-extrabold tracking-tight mb-6">บันทึกกิจกรรม</h2>
+    <div id="activity-list" class="space-y-3">
+      <div class="skeleton h-16 rounded-2xl"></div>
+      <div class="skeleton h-16 rounded-2xl"></div>
+    </div>
+  </section>
+
+</main>
+
+<script>
+  const DEMO_PROJECTS = [
+    { id: '1', name: 'ถ่ายภาพธรรมชาติ', status: 'active', progress: 75, updated: '2 ชั่วโมงที่แล้ว' },
+    { id: '2', name: 'โครงการสถาปัตยกรรม', status: 'active', progress: 45, updated: '5 ชั่วโมงที่แล้ว' },
+    { id: '3', name: 'ถ่ายภาพแต่งงาน', status: 'completed', progress: 100, updated: 'เมื่อวาน' },
+    { id: '4', name: 'ภาพสินค้า', status: 'active', progress: 60, updated: '30 นาทีที่แล้ว' },
+  ];
+
+  const DEMO_ACTIVITIES = [
+    { id: '1', action: 'อัปโหลดรูปภาพ', project: 'ถ่ายภาพธรรมชาติ', time: '2 นาทีที่แล้ว' },
+    { id: '2', action: 'สร้างคอลเลกชันใหม่', project: 'โครงการสถาปัตยกรรม', time: '1 ชั่วโมงที่แล้ว' },
+    { id: '3', action: 'แชร์โปรเจกต์', project: 'ถ่ายภาพแต่งงาน', time: '3 ชั่วโมงที่แล้ว' },
+  ];
+
+  function initDashboard() {
+    document.getElementById('user-name').textContent = 'ผู้ใช้';
+    document.getElementById('projects-count-label').textContent = '0 โปรเจกต์';
+    document.getElementById('reports-count-label').textContent = '0 รายงาน';
+    document.getElementById('photos-count-label').textContent = '0 รูปภาพ';
+
+    renderProjects();
+    renderActivities();
+  }
+
+  function renderProjects() {
+    const list = document.getElementById('projects-list');
+    if (DEMO_PROJECTS.length === 0) {
+      list.innerHTML = '<div class="card-glass rounded-2xl p-8 text-center"><p class="text-gray-500 text-sm">กำลังรอข้อมูลจาก Google Drive...</p></div>';
+      return;
+    }
+    list.innerHTML = DEMO_PROJECTS.map(p => `
+      <div class="card-glass rounded-2xl p-6">
+        <div class="flex items-start justify-between mb-4">
+          <div>
+            <h3 class="font-bold text-lg text-gray-900">${p.name}</h3>
+            <p class="text-xs text-gray-500 font-medium">${p.updated}</p>
+          </div>
+          <span class="px-3 py-1 rounded-full text-xs font-bold ${p.status === 'active' ? 'bg-purple-400/20 text-purple-700' : 'bg-gray-400/20 text-gray-700'}">
+            ${p.status === 'active' ? 'ใช้งาน' : 'เสร็จสิ้น'}
+          </span>
+        </div>
+        <div class="w-full bg-gray-200 rounded-full h-2">
+          <div class="bg-gradient-to-r from-purple-400 to-violet-600 h-2 rounded-full" style="width: ${p.progress}%"></div>
+        </div>
+        <p class="text-xs text-gray-600 font-bold mt-2">${p.progress}% เสร็จสิ้น</p>
+      </div>
+    `).join('');
+  }
+
+  function renderActivities() {
+    const list = document.getElementById('activity-list');
+    if (DEMO_ACTIVITIES.length === 0) {
+      list.innerHTML = '<div class="card-glass rounded-2xl p-8 text-center"><p class="text-gray-500 text-sm">ยังไม่มีกิจกรรม</p></div>';
+      return;
+    }
+    list.innerHTML = DEMO_ACTIVITIES.map(a => `
+      <div class="card-glass rounded-2xl p-4 flex items-center gap-4">
+        <div class="w-10 h-10 rounded-full bg-purple-400/20 flex items-center justify-center flex-shrink-0">
+          <span class="material-symbols-outlined text-purple-600 text-lg">check_circle</span>
+        </div>
+        <div class="flex-1">
+          <p class="font-bold text-gray-900">${a.action}</p>
+          <p class="text-xs text-gray-500">${a.project}</p>
+        </div>
+        <p class="text-xs text-gray-500 font-medium whitespace-nowrap">${a.time}</p>
+      </div>
+    `).join('');
+  }
+
+  window.addEventListener('load', initDashboard);
+</script>
+</body>
+</html>
